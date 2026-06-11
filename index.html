@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thử Vận May Premium</title>
+
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;
+  var ttq=w[t]=w[t]||[];
+  ttq.methods=["page","track"];
+  ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat([].slice.call(arguments)))}}; 
+  for(var i=0;i<ttq.methods.length;i++){ttq.setAndDefer(ttq,ttq.methods[i]);}
+  ttq.load=function(e){
+    var s=document.createElement("script");
+    s.async=true;
+    s.src="https://analytics.tiktok.com/i18n/pixel/events.js?sdkid="+e;
+    document.head.appendChild(s);
+  };
+  ttq.load('D8KFUDJC77UA5Q9SJU90');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+
+<style>
+/* TỔNG THỂ KHÔNG GIAN SANG TRỌNG */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle, #1e1b4b, #090514);
+    color: #fff;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h2 {
+    font-size: 28px;
+    text-shadow: 0 0 10px rgba(250, 204, 21, 0.6);
+    margin-bottom: 10px;
+}
+
+/* KHU VỰC VÒNG QUAY CÓ KIM CHỈ */
+.wheel-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 30px auto;
+}
+
+/* Kim chỉ hướng vòng quay */
+.needle {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 30px solid #ef4444;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    z-index: 10;
+    animation: wiggle 0.5s ease-in-out infinite alternate;
+}
+
+/* NÂNG CẤP VÒNG QUAY CAO CẤP */
+.spin-box {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /* Chia các múi màu sắc nét, rực rỡ */
+    background: conic-gradient(
+        #ef4444 0deg 60deg, 
+        #3b82f6 60deg 120deg, 
+        #10b981 120deg 180deg, 
+        #f59e0b 180deg 240deg, 
+        #8b5cf6 240deg 300deg, 
+        #ec4899 300deg 360deg
+    );
+    border: 10px solid #ffffff;
+    box-shadow: 0 0 35px rgba(255, 255, 255, 0.2), inset 0 0 20px rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    /* Sử dụng cubic-bezier giúp vòng quay khởi động nhanh và dừng chậm dần cực kỳ mượt mà */
+    transition: transform 4s cubic-bezier(0.1, 0.8, 0.2, 1);
+    position: relative;
+}
+
+/* Tâm vòng quay màu vàng ánh kim */
+.spin-box::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #fde047, #ca8a04);
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+/* Chữ QUAY NGAY đè lên tâm */
+.spin-text {
+    position: relative;
+    z-index: 3;
+    font-size: 14px;
+    font-weight: 900;
+    color: #1e1b4b;
+    letter-spacing: 1px;
+    background: #ffffff;
+    padding: 6px 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* THANH TIẾN TRÌNH NEON */
+.bar {
+    width: 85%;
+    max-width: 340px;
+    height: 14px;
+    background: #1e293b;
+    margin: 20px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid #334155;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+}
+.bar-inner {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #22c55e, #4ade80);
+    box-shadow: 0 0 12px #22c55e;
+    transition: width 0.05s linear;
+}
+
+/* HIỆU ỨNG HIỂN THỊ KẾT QUẢ */
+.result {
+    font-size: 26px;
+    color: #facc15;
+    margin-top: 15px;
+    font-weight: bold;
+    min-height: 35px;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.result.show {
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: 0 0 15px rgba(250, 204, 21, 0.6);
+}
+
+/* NÚT CTA KIỂU DÁNG MỚI */
+.cta-btn {
+    display: none;
+    margin-top: 25px;
+    padding: 16px 36px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+    border: 2px solid rgba(255,255,255,0.2);
+    animation: pulse 1.2s infinite;
+    transition: transform 0.2s;
+}
+.cta-btn:hover {
+    transform: scale(1.05);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4); }
+    50% { transform: scale(1.08); box-shadow: 0 10px 35px rgba(34, 197, 94, 0.7); }
+    100% { transform: scale(1); box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4); }
+}
+
+/* NÂNG CẤP HIỆU ỨNG PHÁO HOA BIẾN HOÁ (CONFETTI) */
+.confetti {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    animation: explode 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        /* Di chuyển theo vector ngẫu nhiên được gán từ JS */
+        transform: translate(var(--x), var(--y)) scale(0.3) rotate(var(--r));
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h2>🎯 Bạn có 1 lượt thử miễn phí</h2>
+
+<div class="wheel-wrapper">
+    <div class="needle"></div>
+    <div id="spin" class="spin-box" onclick="startSpin()">
+        <div class="spin-text">QUAY NGAY</div>
+    </div>
+</div>
+
+<div class="bar">
+    <div id="bar" class="bar-inner"></div>
+</div>
+
+<div id="result" class="result"></div>
+
+<div id="cta" class="cta-btn" onclick="goLink()">👉 ĐI XEM THÔI</div>
+
+<script>
+var targetURL = "https://byvn.net/9qpb";
+
+// XỬ LÝ QUAY VÒNG QUAY VÀ ĐỒNG BỘ THANH TIẾN TRÌNH
+function startSpin(){
+    ttq.track('SpinStart');
+
+    let spin = document.getElementById("spin");
+    let bar = document.getElementById("bar");
+
+    // Khóa bấm liên tục
+    spin.style.pointerEvents = "none";
+    
+    // Tự động tính toán góc quay ngẫu nhiên từ 1800 độ đến 2160 độ giúp điểm dừng luôn khác nhau cực sinh động
+    let randomDeg = 1800 + Math.floor(Math.random() * 360);
+    spin.style.transform = `rotate(${randomDeg}deg)`;
+
+    // Đồng bộ thanh Loading chạy mượt mà đúng 4 giây theo hiệu ứng vòng quay dừng hẳn
+    let progress = 0;
+    let duration = 4000; 
+    let intervalTime = 50; 
+    let step = (100 / (duration / intervalTime));
+
+    let interval = setInterval(() => {
+        progress += step;
+        if(progress >= 100) progress = 100;
+        bar.style.width = progress + "%";
+
+        if(progress >= 100){
+            clearInterval(interval);
+            // Chờ vòng quay khựng lại hẳn tạo cảm giác hồi hộp rồi mới hiện kết quả
+            setTimeout(showResult, 300);
+        }
+    }, intervalTime);
+}
+
+// HIỂN THỊ KẾT QUẢ VỚI EFFECT MƯỢT MÀ
+function showResult(){
+    let result = document.getElementById("result");
+    let btn = document.getElementById("cta");
+
+    let coins = Math.floor(Math.random() * 400 + 100);
+    result.innerHTML = `🎉 Bạn đã trúng <b>${coins} xu</b>`;
+    
+    // Thêm class tạo hiệu ứng bung nở cho văn bản kết quả
+    result.classList.add("show");
+
+    ttq.track('SpinResult', {coins: coins});
+
+    // Hiện nút điều hướng liền mạch
+    btn.style.display = "inline-block";
+
+    // Kích hoạt vụ nổ pháo hoa hạt ngọc lung linh từ tâm
+    launchConfetti();
+}
+
+// BẮN PHÁO HOA TỪ TRUNG TÂM MÀN HÌNH (CONFETTI BURST EFFECT)
+function launchConfetti(){
+    // Tăng số lượng hạt lên 80 hạt cho dày đặc và đẹp mắt
+    for(let i = 0; i < 80; i++){
+        let c = document.createElement("div");
+        c.className = "confetti";
+        
+        // Xuất phát từ giữa màn hình (Tâm của vụ nổ)
+        c.style.left = "50%";
+        c.style.top = "45%";
+        
+        // Kích thước đa dạng hạt to hạt nhỏ ngẫu nhiên
+        let size = Math.random() * 8 + 6;
+        c.style.width = size + "px";
+        c.style.height = size + "px";
+        
+        // Ngẫu nhiên hình tròn hoặc hình chữ nhật cắt nhỏ
+        c.style.borderRadius = Math.random() > 0.5 ? "50%" : "3px";
+        c.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
+        
+        // Tạo vector bay vụt ra mọi hướng (Trái, phải, lên, xuống)
+        let angle = Math.random() * Math.PI * 2;
+        let velocity = Math.random() * 350 + 150; // Khoảng cách bay xa
+        let xMove = Math.cos(angle) * velocity;
+        let yMove = Math.sin(angle) * velocity + 100; // Có xu hướng rơi nhẹ xuống do trọng lực sau khi nổ
+        let rotation = Math.random() * 1000 - 500; // Độ xoáy của hạt
+
+        // Truyền biến vào CSS keyframe để xử lý mượt bằng phần cứng máy tính
+        c.style.setProperty('--x', `${xMove}px`);
+        c.style.setProperty('--y', `${yMove}px`);
+        c.style.setProperty('--r', `${rotation}deg`);
+        
+        document.body.appendChild(c);
+
+        // Tự giải phóng bộ nhớ sau khi hoàn tất hoạt họa
+        setTimeout(() => c.remove(), 2500);
+    }
+}
+
+// ĐIỀU HƯỚNG LIÊN KẾT TARGET
+function goLink(){
+    ttq.track('ClickButton');
+    window.location.href = targetURL;
+}
+</script>
+
+</body>
+</html>
