@@ -32,7 +32,6 @@
 body {
     margin: 0;
     font-family: 'Rajdhani', sans-serif;
-    /* Nền không gian chuyển động ma mị, pha trộn giữa tím đen và xanh lá độc dược */
     background: linear-gradient(-45deg, #09021a, #0c1f13, #1c0a35, #040914);
     background-size: 400% 400%;
     animation: gradientBG 12s ease infinite;
@@ -58,7 +57,7 @@ body {
     background: rgba(10, 5, 25, 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 2px solid rgba(34, 197, 94, 0.35); /* Đường viền xanh lá độc phát sáng */
+    border: 2px solid rgba(34, 197, 94, 0.35);
     padding: 35px 25px;
     border-radius: 32px;
     box-shadow: 0 0 40px rgba(34, 197, 94, 0.25), inset 0 0 25px rgba(147, 51, 234, 0.2);
@@ -68,6 +67,32 @@ body {
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+}
+
+/* HIỆU ỨNG CHỮ ĐỘNG MÃN NHÃN: ĐỔI MÀU GRADIENT VÀ BAY PHẢO NHẸ */
+.cyber-announcement {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    /* Dải màu chạy liên tục tạo hiệu ứng lấp lánh */
+    background: linear-gradient(90deg, #4ade80, #22c55e, #a855f7, #f5b041, #4ade80);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShine 3s linear infinite, floatingText 2s ease-in-out infinite alternate;
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+
+@keyframes textShine {
+    to { background-position: 200% center; }
+}
+
+@keyframes floatingText {
+    0% { transform: translateY(0); filter: drop-shadow(0 0 4px rgba(34, 197, 94, 0.4)); }
+    100% { transform: translateY(-5px); filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)); }
 }
 
 /* Tiêu đề Neon phát sáng rực rỡ */
@@ -89,7 +114,7 @@ body {
     100% { text-shadow: 0 0 15px rgba(34, 197, 94, 0.9), 0 0 30px rgba(168, 85, 247, 0.9); transform: scale(1.01); }
 }
 
-/* Vành đai mạ vàng hoàng gia tích hợp hệ thống đèn LED định vị hạt giống */
+/* Vành đai mạ vàng hoàng gia tích hợp hệ thống đèn LED */
 .wheel-outer-ring {
     position: relative;
     width: 320px;
@@ -104,7 +129,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Hệ thống bóng LED nhấp nháy liên tục quanh vòng vàng */
 .wheel-outer-ring::before {
     content: '';
     position: absolute;
@@ -122,7 +146,7 @@ body {
     100% { filter: drop-shadow(0 0 10px #22c55e) brightness(1.8); opacity: 1; }
 }
 
-/* Kim chỉ hướng "Mũi Tên Vàng" đặt chuẩn xác tại đỉnh 12h */
+/* Mũi Tên Vàng đặt chuẩn xác tại đỉnh 12h */
 .needle {
     position: absolute;
     top: -8px;
@@ -136,7 +160,7 @@ body {
     z-index: 110;
 }
 
-/* Đĩa xoay 8 phân vùng màu Tím Cyber và Xanh Độc Dược đan xen sắc nét */
+/* Đĩa xoay 8 phân vùng màu Tím và Xanh Độc Dược đan xen sắc nét */
 .spin-box {
     width: 288px;
     height: 288px;
@@ -158,11 +182,10 @@ body {
     z-index: 10;
 }
 
-/* Căn chỉnh chữ và icon vật phẩm chạy dọc tâm múi quay */
 .tg-item {
     position: absolute;
     width: 80px;
-    height: 144px; /* Đúng bằng bán kính đĩa */
+    height: 144px;
     top: 0;
     left: calc(50% - 40px);
     transform-origin: bottom center;
@@ -185,7 +208,7 @@ body {
     filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7));
 }
 
-/* KHÓA CHẶT TÂM LÕI ĐỘT BIẾN (NÚT BẤM TRUNG TÂM) */
+/* NÚT BẤM TRUNG TÂM */
 .center-hub {
     position: absolute;
     top: 50%; left: 50%;
@@ -218,7 +241,7 @@ body {
     line-height: 1.1;
 }
 
-/* THANH NẠP NĂNG LƯỢNG ĐỘC DƯỢC (PLANT FURY BAR) */
+/* THANH NẠP NĂNG LƯỢNG ĐỘC DƯỢC */
 .bar {
     width: 100%;
     height: 14px;
@@ -242,7 +265,6 @@ body {
     overflow: hidden;
 }
 
-/* Hiệu ứng dòng chảy quét xéo liên tục qua thanh năng lượng */
 .bar-inner::before {
     content: '';
     position: absolute;
@@ -257,9 +279,7 @@ body {
     100% { left: 150%; }
 }
 
-/* ===================================================
-   HỆ THỐNG POPUP MODAL HOÀNG GIA (DYNAMICS BOUNCE)
-   =================================================== */
+/* POPUP MODAL HOÀNG GIA */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0;
@@ -293,14 +313,13 @@ body {
     position: relative;
     overflow: hidden;
     transform: scale(0.4) translateY(60px);
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1.25); /* Elastic Bounce nảy đàn hồi cực cuốn */
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1.25);
 }
 
 .modal-overlay.show .modal-content {
     transform: scale(1) translateY(0);
 }
 
-/* Quét tia sáng hoàng kim qua bảng kết quả */
 .modal-shine {
     position: absolute;
     top: 0; left: -150%;
@@ -316,7 +335,6 @@ body {
     100% { left: 150%; }
 }
 
-/* Icon Máy Slot dập dình 3D */
 .modal-icon {
     font-size: 65px;
     margin-bottom: 12px;
@@ -346,7 +364,6 @@ body {
     line-height: 1.5;
 }
 
-/* Văn bản hiển thị số Xu Vàng phóng đại nhấp nháy kích thích thị giác */
 .gold-text {
     color: #f5b041;
     font-weight: 900;
@@ -362,7 +379,6 @@ body {
     100% { transform: scale(1.04); text-shadow: 0 0 25px rgba(245, 176, 65, 1); }
 }
 
-/* NÚT THÔI MIÊN "ĐI THÔI" CO GIÃN LIÊN TỤC (PREMIUM PULSING) */
 .modal-cta-btn {
     padding: 15px 0;
     width: 100%;
@@ -390,7 +406,6 @@ body {
     100% { box-shadow: 0 6px 20px rgba(245, 176, 65, 0.4); transform: scale(1); }
 }
 
-/* HIỆU ỨNG PHÁO HOA GIẤY BÙNG NỔ */
 .confetti {
     position: fixed;
     z-index: 100000;
@@ -408,6 +423,8 @@ body {
 <body>
 
 <div class="glass-container">
+    <div class="cyber-announcement">⚡ THU HOẠCH ĐIỂM THƯỞNG CỦA BẠN TẠI ĐÂY ⚡</div>
+    
     <h2 class="neon-title">🎯 THẢ GAI DIỆT ZOMBIE - GIẬT JACKPOT KHỦNG</h2>
 
     <div class="wheel-outer-ring">
@@ -440,30 +457,28 @@ body {
         <div class="modal-icon">🎰</div>
         <h3 class="popup-title">Chúc Mừng Bạn!</h3>
         <p id="modal-text" class="modal-text"></p>
-        <div class="modal-cta-btn" onclick="goLink()">👉 VÀO GAME </div>
+        <div class="modal-cta-btn" onclick="goLink()">👉 VÀO GAME</div>
     </div>
 </div>
 
 <script>
-var targetURL = "";
+var targetURL = "https://play.google.com/store/apps/details?id=com.ea.game.pvzfree_row&hl=vi";
 var spinning = false;
 
 function startSpin(){
     if(spinning) return; 
     spinning = true;
 
-    // Trigger sự kiện bắt đầu quay cho Tiktok Pixel
     ttq.track('SpinStart');
 
     let spin = document.getElementById("spin");
     let bar = document.getElementById("bar");
     
-    // Gia tốc quay tối thiểu 6 vòng (2160 độ) kết hợp góc ngẫu nhiên siêu mượt
     let randomDeg = 2160 + Math.floor(Math.random() * 360);
     spin.style.transform = `rotate(${randomDeg}deg)`;
 
     let progress = 0;
-    let duration = 4500; // Thời gian quay 4.5 giây khớp với hiệu ứng đĩa
+    let duration = 4500; 
     let intervalTime = 30; 
     let step = (100 / (duration / intervalTime));
 
@@ -474,7 +489,7 @@ function startSpin(){
 
         if(progress >= 100){
             clearInterval(interval);
-            setTimeout(showResult, 500); // Đợi đĩa quay dừng hẳn rồi hiển thị popup
+            setTimeout(showResult, 500);
         }
     }, intervalTime);
 }
@@ -483,13 +498,11 @@ function showResult(){
     let modal = document.getElementById("popupModal");
     let modalText = document.getElementById("modal-text");
 
-    // Tạo số điểm/xu thưởng ngẫu nhiên từ 100 đến 500
     let coins = Math.floor(Math.random() * 400 + 100);
     modalText.innerHTML = `Quả cầu gai đã nghiền nát Zombie! Hệ thống ghi nhận bạn nhận được <span class="gold-text">${coins} ĐIỂM ĐỘT BIẾN</span>`;
     
     modal.classList.add("show");
     
-    // Trigger sự kiện kết quả cho Tiktok Pixel
     ttq.track('SpinResult', {coins: coins});
     launchConfetti();
 }
@@ -507,7 +520,6 @@ function launchConfetti(){
         c.style.height = size + "px";
         
         c.style.borderRadius = Math.random() > 0.3 ? "50%" : "2px";
-        // Bắn pháo giấy hệ màu Neon phát sáng
         c.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
         
         let angle = Math.random() * Math.PI * 2;
