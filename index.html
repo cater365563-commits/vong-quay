@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vòng Quay May Mắn - Premium VIP Edition</title>
-<link rel="stylesheet" href="style-v2.css">
+<title>Vòng Quay May Mắn - Cyber Casino Edition</title>
 
+<!-- TIKTOK PIXEL -->
 <script>
 !function (w, d, t) {
   w.TiktokAnalyticsObject=t;
@@ -23,6 +23,306 @@
   ttq.page();
 }(window, document, 'ttq');
 </script>
+
+<style>
+/* ===================================================
+   GIAO DIỆN PREMIUM CYBERPUNK (THEO IMAGE_1F5F7D.PNG)
+   =================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@600;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
+    /* Nền Cyberpunk tím đen sâu thẳm kết hợp hiệu ứng đèn Neon mờ ảo */
+    background: radial-gradient(circle at center, #2e1065 0%, #11072c 60%, #05020c 100%);
+    color: #fff;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Khung kính cường lực viền vô cực */
+.glass-container {
+    background: rgba(13, 8, 30, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid rgba(147, 51, 234, 0.3);
+    padding: 40px 25px;
+    border-radius: 32px;
+    box-shadow: 0 0 40px rgba(147, 51, 234, 0.25), inset 0 0 25px rgba(147, 51, 234, 0.15);
+    max-width: 440px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Tiêu đề Neon tỏa sáng rực rỡ */
+.neon-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0, 242, 254, 0.6), 0 0 20px rgba(0, 242, 254, 0.9);
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+/* Vòng kim loại vàng bọc ngoài chuẩn Casino kết hợp bóng đèn led chớp nháy */
+.wheel-outer-ring {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin: 10px auto;
+    border-radius: 50%;
+    padding: 16px;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #ffe066, #f5b041, #fcf6ba, #b38728, #fbf5b7, #9a7d0a);
+    box-shadow: 0 0 35px rgba(245, 176, 65, 0.6), inset 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Tạo các bóng đèn LED nhấp nháy sang trọng trên viền vàng */
+.wheel-outer-ring::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px; right: 6px; bottom: 6px;
+    border-radius: 50%;
+    border: 3px dotted #ffffff;
+    box-shadow: 0 0 12px #ffffff;
+    animation: ledBlink 1s infinite alternate;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+@keyframes ledBlink {
+    0% { filter: drop-shadow(0 0 2px #fff) brightness(1); }
+    100% { filter: drop-shadow(0 0 8px #f5b041) brightness(1.5); }
+}
+
+/* Kim chỉ hướng bằng vàng đặt chính xác ở đỉnh giữa giống như image_1f5f7d.png */
+.needle {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 40px;
+    background: linear-gradient(to bottom, #fff3b0, #ca8a04);
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6));
+    z-index: 100;
+}
+
+/* Đĩa xoay chia phân vùng màu xanh - tím đan xen tinh tế */
+.spin-box {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /* Tạo 8 phân vùng màu xen kẽ cực kỳ sắc nét */
+    background: conic-gradient(
+        #7e22ce 0deg 45deg, 
+        #0284c7 45deg 90deg, 
+        #7e22ce 90deg 135deg, 
+        #0284c7 135deg 180deg, 
+        #7e22ce 180deg 225deg, 
+        #0284c7 225deg 270deg, 
+        #7e22ce 270deg 315deg, 
+        #0284c7 315deg 360deg
+    );
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 4.5s cubic-bezier(0.15, 0.88, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Nhãn hiển thị phần thưởng bên trong vòng quay */
+.tg-item {
+    position: absolute;
+    width: 60px;
+    height: 120px;
+    top: 10px;
+    transform-origin: bottom center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+.tg-item i {
+    font-size: 26px;
+    margin-bottom: 4px;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+}
+
+/* Trục nón vàng lõi trung tâm */
+.center-hub {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #fff3b0 0%, #ca8a04 60%, #854d0e 100%);
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.6);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 3px solid #fef08a;
+}
+.spin-text {
+    font-size: 11px;
+    font-weight: 900;
+    color: #1e1b4b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.1;
+}
+
+/* Thanh Progress tiến trình nạp năng lượng */
+.bar {
+    width: 100%;
+    height: 14px;
+    background: #0f0b21;
+    margin: 30px 0 10px 0;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+}
+.bar-inner {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00f2fe, #4facfe);
+    box-shadow: 0 0 15px #00f2fe;
+    border-radius: 20px;
+    transition: width 0.03s linear;
+}
+
+/* GIAO DIỆN HỘP THOẠI POPUP SANG TRỌNG */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(6, 3, 15, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 99999;
+    transition: opacity 0.4s ease;
+}
+.modal-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-content {
+    background: radial-gradient(circle at top, #2e1065, #0c051c);
+    border: 2px solid #f5b041;
+    padding: 40px 30px;
+    border-radius: 28px;
+    width: 90%;
+    max-width: 380px;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(245, 176, 65, 0.4), inset 0 0 30px rgba(0,0,0,0.8);
+    position: relative;
+    overflow: hidden;
+    transform: scale(0.5) translateY(40px);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.modal-overlay.show .modal-content {
+    transform: scale(1) translateY(0);
+}
+.modal-shine {
+    position: absolute;
+    top: 0; left: -150%;
+    width: 120%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(-30deg);
+    animation: shineSweep 3s infinite ease-in-out;
+}
+@keyframes shineSweep {
+    0% { left: -150%; }
+    40% { left: 150%; }
+    100% { left: 150%; }
+}
+.modal-icon {
+    font-size: 70px;
+    margin-bottom: 15px;
+    animation: float 2s ease-in-out infinite alternate;
+}
+@keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+.popup-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    margin: 0 0 15px 0;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+.modal-text {
+    font-size: 18px;
+    color: #cbd5e1;
+    margin-bottom: 30px;
+}
+.gold-text {
+    color: #f5b041;
+    font-weight: 900;
+    font-size: 28px;
+    display: block;
+    margin-top: 5px;
+    text-shadow: 0 0 15px rgba(245, 176, 65, 0.6);
+}
+.modal-cta-btn {
+    padding: 16px 0;
+    width: 100%;
+    background: linear-gradient(135deg, #ffe066, #f5b041);
+    color: #0c051c;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(245, 176, 65, 0.4);
+    border: none;
+    transition: all 0.2s ease;
+}
+.modal-cta-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(245, 176, 65, 0.6);
+}
+
+/* Hiệu ứng pháo hoa giấy rơi tự do khi trúng thưởng */
+.confetti {
+    position: fixed;
+    z-index: 100000;
+    pointer-events: none;
+    animation: burst 2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+@keyframes burst {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--x), var(--y)) scale(0) rotate(var(--r)); opacity: 0; }
+}
+</style>
 </head>
 
 <body>
@@ -30,10 +330,25 @@
 <div class="glass-container">
     <h2 class="neon-title">🎯 QUAY NGAY ĐỂ NHẬN QUÀ BÍ ẨN</h2>
 
+    <!-- Hệ thống vòng quay nâng cấp chuẩn hình ảnh mẫu -->
     <div class="wheel-outer-ring">
         <div class="needle"></div>
-        <div id="spin" class="spin-box" onclick="startSpin()">
-            <div class="spin-text">QUAY NGAY</div>
+        
+        <div id="spin" class="spin-box">
+            <!-- Thêm các vật phẩm Crypto thời thượng khớp hoàn toàn với thiết kế image_1f5f7d.png -->
+            <div class="tg-item" style="transform: rotate(22.5deg);"><i>₿</i>BTC</div>
+            <div class="tg-item" style="transform: rotate(67.5deg);"><i>Ξ</i>ETH</div>
+            <div class="tg-item" style="transform: rotate(112.5deg);"><i>₮</i>USDT</div>
+            <div class="tg-item" style="transform: rotate(157.5deg);"><i>🖼️</i>NFT</div>
+            <div class="tg-item" style="transform: rotate(202.5deg);"><i>🎁</i>BONUS</div>
+            <div class="tg-item" style="transform: rotate(247.5deg);"><i>₿</i>BTC</div>
+            <div class="tg-item" style="transform: rotate(292.5deg);"><i>💎</i>JACKPOT</div>
+            <div class="tg-item" style="transform: rotate(337.5deg);"><i>🔥</i>MEGA</div>
+        </div>
+
+        <!-- Tâm vàng đóng vai trò làm nút bấm điều khiển -->
+        <div class="center-hub" onclick="startSpin()">
+            <div class="spin-text">QUAY<br>NGAY</div>
         </div>
     </div>
 
@@ -42,10 +357,11 @@
     </div>
 </div>
 
+<!-- POPUP THÔNG BÁO CHIẾN THẮNG -->
 <div id="popupModal" class="modal-overlay">
     <div class="modal-content">
         <div class="modal-shine"></div>
-        <div class="modal-icon">🎁</div>
+        <div class="modal-icon">🎰</div>
         <h3 class="popup-title">Chúc Mừng Bạn!</h3>
         <p id="modal-text" class="modal-text"></p>
         <div class="modal-cta-btn" onclick="goLink()">👉 ĐI THÔI</div>
@@ -54,20 +370,23 @@
 
 <script>
 var targetURL = "https://byvn.net/9qpb";
+var spinning = false;
 
 function startSpin(){
+    if(spinning) return; // Chống click liên tục phá hiệu ứng
+    spinning = true;
+
     ttq.track('SpinStart');
 
     let spin = document.getElementById("spin");
     let bar = document.getElementById("bar");
-
-    spin.style.pointerEvents = "none";
     
+    // Xoay tối thiểu 6 vòng để tạo gia tốc mãn nhãn
     let randomDeg = 2160 + Math.floor(Math.random() * 360);
     spin.style.transform = `rotate(${randomDeg}deg)`;
 
     let progress = 0;
-    let duration = 4000; 
+    let duration = 4500; // Khớp thời gian với hiệu ứng xoay mượt mà
     let intervalTime = 30; 
     let step = (100 / (duration / intervalTime));
 
@@ -78,7 +397,7 @@ function startSpin(){
 
         if(progress >= 100){
             clearInterval(interval);
-            setTimeout(showResult, 400);
+            setTimeout(showResult, 500);
         }
     }, intervalTime);
 }
@@ -88,36 +407,34 @@ function showResult(){
     let modalText = document.getElementById("modal-text");
 
     let coins = Math.floor(Math.random() * 400 + 100);
-    modalText.innerHTML = `Bạn đã trúng ngẫu nhiên <span class="gold-text">${coins} xu</span>`;
+    modalText.innerHTML = `Hệ thống ghi nhận bạn đã trúng ngẫu nhiên <span class="gold-text">${coins} XU THƯỞNG</span>`;
     
-    // Hiện popup kích hoạt hiệu ứng CSS transition
     modal.classList.add("show");
 
     ttq.track('SpinResult', {coins: coins});
 
-    // Kích hoạt pháo hoa tưng bừng quanh popup
     launchConfetti();
 }
 
 function launchConfetti(){
-    for(let i = 0; i < 120; i++){ 
+    for(let i = 0; i < 140; i++){ 
         let c = document.createElement("div");
         c.className = "confetti";
         
         c.style.left = "50%";
         c.style.top = "50%";
         
-        let size = Math.random() * 10 + 6;
+        let size = Math.random() * 12 + 6;
         c.style.width = size + "px";
         c.style.height = size + "px";
         
-        c.style.borderRadius = Math.random() > 0.4 ? "50%" : "2px";
-        c.style.background = `hsl(${Math.random() * 360}, 100%, 65%)`;
+        c.style.borderRadius = Math.random() > 0.3 ? "50%" : "2px";
+        c.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
         
         let angle = Math.random() * Math.PI * 2;
-        let velocity = Math.random() * 450 + 200; 
+        let velocity = Math.random() * 500 + 250; 
         let xMove = Math.cos(angle) * velocity;
-        let yMove = Math.sin(angle) * velocity + 100; 
+        let yMove = Math.sin(angle) * velocity + 150; 
         let rotation = Math.random() * 1440 - 720;
 
         c.style.setProperty('--x', `${xMove}px`);
@@ -125,8 +442,7 @@ function launchConfetti(){
         c.style.setProperty('--r', `${rotation}deg`);
         
         document.body.appendChild(c);
-
-        setTimeout(() => c.remove(), 2500);
+        setTimeout(() => c.remove(), 2000);
     }
 }
 
