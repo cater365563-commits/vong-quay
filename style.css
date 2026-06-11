@@ -1,4 +1,4 @@
-/* ĐỔI MÀU NỀN KHÔNG GIAN ĐỘNG (ANIMATED SPACE GRADIENT) */
+/* KHÔNG GIAN NỀN ĐỘNG (ANIMATED SPACE GRADIENT) */
 body {
     margin: 0;
     font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
@@ -22,7 +22,7 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* KHUNG HÌNH PHÒNG PHONG CÁCH KÍNH MỜ (GLASSMORPHISM) */
+/* KHUNG KÍNH MỜ CHỨA VÒNG QUAY (GLASSMORPHISM) */
 .glass-container {
     background: rgba(15, 23, 42, 0.45);
     backdrop-filter: blur(16px);
@@ -38,7 +38,6 @@ body {
     align-items: center;
 }
 
-/* TIÊU ĐỀ ĐÈN NEON NHẤP NHÁY LUXURY */
 .neon-title {
     font-size: 26px;
     font-weight: 700;
@@ -58,7 +57,6 @@ body {
     100% { text-shadow: 0 0 15px rgba(250, 204, 21, 0.8), 0 0 35px rgba(234, 179, 8, 1), 0 0 50px rgba(249, 115, 22, 0.6); }
 }
 
-/* VIỀN ĐÈN CHẠY CASINO ĐẲNG CẤP (MARQUEE EFFECT) */
 .wheel-outer-ring {
     position: relative;
     width: 290px;
@@ -77,7 +75,6 @@ body {
     100% { box-shadow: 0 0 35px rgba(234, 179, 8, 0.8), 0 0 15px rgba(249, 115, 22, 0.5); }
 }
 
-/* KIM CHỈ ĐỊNH VỊ 3D */
 .needle {
     position: absolute;
     top: -12px;
@@ -92,7 +89,6 @@ body {
     z-index: 10;
 }
 
-/* VÒNG QUAY SẮC NÉT CHUYỂN ĐỘNG MƯỢT */
 .spin-box {
     width: 100%;
     height: 100%;
@@ -113,7 +109,6 @@ body {
     position: relative;
 }
 
-/* TÂM VÒNG QUAY ÁNH KIM */
 .spin-box::after {
     content: '';
     position: absolute;
@@ -125,7 +120,6 @@ body {
     z-index: 2;
 }
 
-/* CHỮ QUAY NGAY ĐỔ BÓNG TRỰC QUAN */
 .spin-text {
     position: relative;
     z-index: 3;
@@ -139,7 +133,6 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
-/* THANH TIẾN TRÌNH KÈM HIỆU ỨNG QUÉT LIQUID */
 .bar {
     width: 100%;
     height: 12px;
@@ -159,7 +152,6 @@ body {
     position: relative;
     overflow: hidden;
 }
-/* Hiệu ứng tia sáng quét qua thanh loading */
 .bar-inner::before {
     content: '';
     position: absolute;
@@ -174,58 +166,146 @@ body {
     100% { left: 150%; }
 }
 
-/* TEXT KẾT QUẢ ĐỘNG */
-.result {
-    font-size: 24px;
-    font-weight: 700;
-    margin-top: 10px;
-    min-height: 36px;
+/* ===================================================
+   HỆ THỐNG POPUP MODAL HOÀNG GIA (DYNAMICS POPUP)
+   =================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(4, 2, 14, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
-    transform: translateY(15px) scale(0.8);
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    z-index: 10000;
+    transition: opacity 0.4s ease;
 }
-.result.show {
+
+/* Khi active popup */
+.modal-overlay.show {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    pointer-events: auto;
 }
+
+.modal-content {
+    background: radial-gradient(circle at top, #1e1b4b, #090514);
+    border: 2px solid #facc15;
+    padding: 40px 30px;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(250, 204, 21, 0.35), inset 0 0 30px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+    
+    /* Hoạt họa zoom nảy đàn hồi cực "cuốn" (Elastic Bounce) */
+    transform: scale(0.4) translateY(60px);
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1.25);
+}
+
+.modal-overlay.show .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+/* Hiệu ứng luồng sáng quét xéo liên tục qua bảng kết quả */
+.modal-shine {
+    position: absolute;
+    top: 0; left: -150%;
+    width: 120%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+    transform: skewX(-35deg);
+    animation: shineSweep 3.5s infinite ease-in-out;
+}
+
+@keyframes shineSweep {
+    0% { left: -150%; }
+    35% { left: 150%; }
+    100% { left: 150%; }
+}
+
+/* Icon hộp quà dập dình 3D */
+.modal-icon {
+    font-size: 65px;
+    margin-bottom: 12px;
+    animation: floatIcon 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes floatIcon {
+    0% { transform: translateY(0) scale(1) rotate(-3deg); }
+    100% { transform: translateY(-12px) scale(1.08) rotate(3deg); filter: drop-shadow(0 15px 20px rgba(250,204,21,0.5)); }
+}
+
+.popup-title {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0 0 15px 0;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.modal-text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    margin-bottom: 30px;
+}
+
+/* Văn bản hiển thị Xu Vàng nhấp nháy phóng đại */
 .gold-text {
     color: #facc15;
-    text-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+    font-weight: 900;
+    font-size: 26px;
+    display: block;
+    margin-top: 8px;
+    text-shadow: 0 0 15px rgba(250, 204, 21, 0.7);
+    animation: textGlow 1.2s ease-in-out infinite alternate;
 }
 
-/* NÚT CTA KIỂU DÁNG HOÀNG GIA (ROYAL ANIMATED BUTTON) */
-.cta-btn {
-    display: none;
-    margin-top: 20px;
-    padding: 15px 40px;
-    background: linear-gradient(135deg, #10b981, #059669);
+@keyframes textGlow {
+    0% { transform: scale(0.98); text-shadow: 0 0 10px rgba(250, 204, 21, 0.5); }
+    100% { transform: scale(1.06); text-shadow: 0 0 25px rgba(250, 204, 21, 0.9), 0 0 10px rgba(249, 115, 22, 0.4); }
+}
+
+/* NÚT BUTTON ĐI THÔI PHÍA DƯỚI DÒNG CHỮ (PREMIUM PULSING) */
+.modal-cta-btn {
+    padding: 16px 0;
+    width: 100%;
+    background: linear-gradient(135deg, #eab308, #ca8a04);
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 800;
     border-radius: 50px;
-    font-weight: 700;
-    font-size: 19px;
-    color: #fff;
     cursor: pointer;
-    box-shadow: 0 12px 24px rgba(16, 185, 129, 0.35);
-    border: 1px solid rgba(255,255,255,0.15);
-    transition: all 0.3s ease;
-    animation: premiumPulse 1.5s infinite;
-}
-.cta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 30px rgba(16, 185, 129, 0.5);
+    box-shadow: 0 10px 25px rgba(234, 179, 8, 0.4);
+    border: 2px solid rgba(255,255,255,0.35);
+    transition: all 0.25s ease;
+    animation: buttonPulse 1.2s infinite;
 }
 
-@keyframes premiumPulse {
-    0% { transform: scale(1); box-shadow: 0 12px 24px rgba(16, 185, 129, 0.35); }
-    50% { transform: scale(1.04); box-shadow: 0 12px 35px rgba(16, 185, 129, 0.6); }
-    100% { transform: scale(1); box-shadow: 0 12px 24px rgba(16, 185, 129, 0.35); }
+.modal-cta-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(234, 179, 8, 0.7);
 }
 
-/* HOẠT HỌA PHÁO HOA NỔ TÙNG TỪ TÂM MÀN HÌNH */
+@keyframes buttonPulse {
+    0% { box-shadow: 0 10px 20px rgba(234, 179, 8, 0.4); transform: scale(1); }
+    50% { box-shadow: 0 10px 35px rgba(234, 179, 8, 0.7); transform: scale(1.03); }
+    100% { box-shadow: 0 10px 20px rgba(234, 179, 8, 0.4); transform: scale(1); }
+}
+
+/* HIỆU ỨNG PHÁO HOA BẮN RA TỪ TRUNG TÂM POPUP */
 .confetti {
     position: fixed;
-    z-index: 9999;
+    z-index: 10001;
     pointer-events: none;
-    animation: explodeBurst 2s cubic-bezier(0.05, 0.8, 0.1, 1) forwards;
+    animation: explodeBurst 2.2s cubic-bezier(0.05, 0.8, 0.1, 1) forwards;
 }
 
 @keyframes explodeBurst {
