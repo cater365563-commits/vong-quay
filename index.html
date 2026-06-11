@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vòng Quay May Mắn - Premium VIP Edition</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style-v2.css">
 
 <script>
 !function (w, d, t) {
@@ -28,7 +28,7 @@
 <body>
 
 <div class="glass-container">
-    <h2 class="neon-title">🎯 Bạn có 1 lượt thử miễn phí</h2>
+    <h2 class="neon-title">🎯 QUAY NGAY ĐỂ NHẬN QUÀ BÍ ẨN</h2>
 
     <div class="wheel-outer-ring">
         <div class="needle"></div>
@@ -40,10 +40,16 @@
     <div class="bar">
         <div id="bar" class="bar-inner"></div>
     </div>
+</div>
 
-    <div id="result" class="result"></div>
-
-    <div id="cta" class="cta-btn" onclick="goLink()">👉 ĐI XEM THÔI</div>
+<div id="popupModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-shine"></div>
+        <div class="modal-icon">🎁</div>
+        <h3 class="popup-title">Chúc Mừng Bạn!</h3>
+        <p id="modal-text" class="modal-text"></p>
+        <div class="modal-cta-btn" onclick="goLink()">👉 ĐI THÔI</div>
+    </div>
 </div>
 
 <script>
@@ -57,7 +63,6 @@ function startSpin(){
 
     spin.style.pointerEvents = "none";
     
-    // Random góc quay lớn giúp vòng lướt mượt hơn
     let randomDeg = 2160 + Math.floor(Math.random() * 360);
     spin.style.transform = `rotate(${randomDeg}deg)`;
 
@@ -79,28 +84,28 @@ function startSpin(){
 }
 
 function showResult(){
-    let result = document.getElementById("result");
-    let btn = document.getElementById("cta");
+    let modal = document.getElementById("popupModal");
+    let modalText = document.getElementById("modal-text");
 
     let coins = Math.floor(Math.random() * 400 + 100);
-    result.innerHTML = `🎉 Bạn đã trúng <b class="gold-text">${coins} xu</b>`;
+    modalText.innerHTML = `Bạn đã trúng ngẫu nhiên <span class="gold-text">${coins} xu</span>`;
     
-    result.classList.add("show");
+    // Hiện popup kích hoạt hiệu ứng CSS transition
+    modal.classList.add("show");
 
     ttq.track('SpinResult', {coins: coins});
 
-    btn.style.display = "inline-block";
-
+    // Kích hoạt pháo hoa tưng bừng quanh popup
     launchConfetti();
 }
 
 function launchConfetti(){
-    for(let i = 0; i < 100; i++){
+    for(let i = 0; i < 120; i++){ 
         let c = document.createElement("div");
         c.className = "confetti";
         
         c.style.left = "50%";
-        c.style.top = "45%";
+        c.style.top = "50%";
         
         let size = Math.random() * 10 + 6;
         c.style.width = size + "px";
@@ -110,9 +115,9 @@ function launchConfetti(){
         c.style.background = `hsl(${Math.random() * 360}, 100%, 65%)`;
         
         let angle = Math.random() * Math.PI * 2;
-        let velocity = Math.random() * 400 + 200; 
+        let velocity = Math.random() * 450 + 200; 
         let xMove = Math.cos(angle) * velocity;
-        let yMove = Math.sin(angle) * velocity + 150; 
+        let yMove = Math.sin(angle) * velocity + 100; 
         let rotation = Math.random() * 1440 - 720;
 
         c.style.setProperty('--x', `${xMove}px`);
