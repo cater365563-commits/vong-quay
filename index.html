@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vòng Quay May Mắn - Cyber Casino Edition</title>
+<title>Vòng Quay May Mắn - Cyber VIP</title>
 
-<!-- TIKTOK PIXEL -->
 <script>
 !function (w, d, t) {
   w.TiktokAnalyticsObject=t;
@@ -26,15 +25,17 @@
 
 <style>
 /* ===================================================
-   GIAO DIỆN PREMIUM CYBERPUNK (THEO IMAGE_1F5F7D.PNG)
+   GIAO DIỆN PREMIUM CYBER (ALL-IN-ONE CSS)
    =================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&display=swap');
 
 body {
     margin: 0;
     font-family: 'Rajdhani', sans-serif;
-    /* Nền Cyberpunk tím đen sâu thẳm kết hợp hiệu ứng đèn Neon mờ ảo */
-    background: radial-gradient(circle at center, #2e1065 0%, #11072c 60%, #05020c 100%);
+    /* Không gian nền động mượt mà hệ màu Cyberpunk */
+    background: linear-gradient(-45deg, #09041a, #150734, #2e1065, #0a0314);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
     color: #fff;
     text-align: center;
     min-height: 100vh;
@@ -46,86 +47,100 @@ body {
     box-sizing: border-box;
 }
 
-/* Khung kính cường lực viền vô cực */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Khung kính mờ bo góc cao cấp */
 .glass-container {
-    background: rgba(13, 8, 30, 0.65);
+    background: rgba(13, 8, 30, 0.75);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 2px solid rgba(147, 51, 234, 0.3);
-    padding: 40px 25px;
+    border: 2px solid rgba(147, 51, 234, 0.4);
+    padding: 35px 25px;
     border-radius: 32px;
-    box-shadow: 0 0 40px rgba(147, 51, 234, 0.25), inset 0 0 25px rgba(147, 51, 234, 0.15);
-    max-width: 440px;
+    box-shadow: 0 0 40px rgba(147, 51, 234, 0.3), inset 0 0 25px rgba(147, 51, 234, 0.15);
+    max-width: 430px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
 }
 
-/* Tiêu đề Neon tỏa sáng rực rỡ */
+/* Tiêu đề Neon phát sáng nhấp nháy */
 .neon-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 24px;
+    font-size: 23px;
     font-weight: 900;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     color: #fff;
-    text-shadow: 0 0 8px rgba(0, 242, 254, 0.6), 0 0 20px rgba(0, 242, 254, 0.9);
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.6), 0 0 25px rgba(0, 242, 254, 0.9);
+    animation: neonPulse 2s ease-in-out infinite alternate;
     margin-top: 0;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
-/* Vòng kim loại vàng bọc ngoài chuẩn Casino kết hợp bóng đèn led chớp nháy */
+@keyframes neonPulse {
+    0% { text-shadow: 0 0 8px rgba(0, 242, 254, 0.5), 0 0 20px rgba(0, 242, 254, 0.8); transform: scale(0.99); }
+    100% { text-shadow: 0 0 15px rgba(0, 242, 254, 0.9), 0 0 30px rgba(147, 51, 234, 0.8); transform: scale(1.01); }
+}
+
+/* Vành đúc mạ vàng và Đèn LED chạy quanh viền */
 .wheel-outer-ring {
     position: relative;
     width: 320px;
     height: 320px;
-    margin: 10px auto;
+    margin: 15px auto;
     border-radius: 50%;
-    padding: 16px;
-    box-sizing: border-box;
     background: linear-gradient(135deg, #ffe066, #f5b041, #fcf6ba, #b38728, #fbf5b7, #9a7d0a);
-    box-shadow: 0 0 35px rgba(245, 176, 65, 0.6), inset 0 0 20px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 35px rgba(245, 176, 65, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
-/* Tạo các bóng đèn LED nhấp nháy sang trọng trên viền vàng */
+/* Đèn LED nhấp nháy trên viền vàng */
 .wheel-outer-ring::before {
     content: '';
     position: absolute;
     top: 6px; left: 6px; right: 6px; bottom: 6px;
     border-radius: 50%;
-    border: 3px dotted #ffffff;
+    border: 4px dotted #ffffff;
     box-shadow: 0 0 12px #ffffff;
-    animation: ledBlink 1s infinite alternate;
+    animation: ledBlink 0.8s infinite alternate;
     pointer-events: none;
-    opacity: 0.85;
+    z-index: 5;
 }
 
 @keyframes ledBlink {
-    0% { filter: drop-shadow(0 0 2px #fff) brightness(1); }
-    100% { filter: drop-shadow(0 0 8px #f5b041) brightness(1.5); }
+    0% { filter: drop-shadow(0 0 2px #fff) brightness(1); opacity: 0.6; }
+    100% { filter: drop-shadow(0 0 10px #f5b041) brightness(1.6); opacity: 1; }
 }
 
-/* Kim chỉ hướng bằng vàng đặt chính xác ở đỉnh giữa giống như image_1f5f7d.png */
+/* Kim chỉ hướng đặt chính xác ở đỉnh trên cùng */
 .needle {
     position: absolute;
-    top: -10px;
+    top: -8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 30px;
-    height: 40px;
-    background: linear-gradient(to bottom, #fff3b0, #ca8a04);
+    width: 26px;
+    height: 36px;
+    background: linear-gradient(to bottom, #ffffff, #f5b041, #b38728);
     clip-path: polygon(50% 100%, 0 0, 100% 0);
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6));
-    z-index: 100;
+    z-index: 110;
 }
 
-/* Đĩa xoay chia phân vùng màu xanh - tím đan xen tinh tế */
+/* Đĩa xoay chia 8 phân vùng màu Tím - Xanh đan xen */
 .spin-box {
-    width: 100%;
-    height: 100%;
+    width: 288px;
+    height: 288px;
     border-radius: 50%;
-    /* Tạo 8 phân vùng màu xen kẽ cực kỳ sắc nét */
     background: conic-gradient(
         #7e22ce 0deg 45deg, 
         #0284c7 45deg 90deg, 
@@ -136,87 +151,117 @@ body {
         #7e22ce 270deg 315deg, 
         #0284c7 315deg 360deg
     );
-    box-shadow: inset 0 0 30px rgba(0,0,0,0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 4.5s cubic-bezier(0.15, 0.88, 0.3, 1);
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
     position: relative;
     overflow: hidden;
+    transition: transform 4.5s cubic-bezier(0.15, 0.88, 0.3, 1);
+    z-index: 10;
 }
 
-/* Nhãn hiển thị phần thưởng bên trong vòng quay */
+/* Căn chỉnh vị trí chữ/icon phần thưởng chuẩn tâm hình học */
 .tg-item {
     position: absolute;
-    width: 60px;
-    height: 120px;
-    top: 10px;
+    width: 80px;
+    height: 144px; /* Bằng đúng 1 nửa chiều cao đĩa xoay */
+    top: 0;
+    left: calc(50% - 40px);
     transform-origin: bottom center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 15px;
+    justify-content: flex-start;
+    padding-top: 15px;
+    box-sizing: border-box;
+    font-size: 13px;
     font-weight: 700;
     color: #ffffff;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.9);
 }
+
 .tg-item i {
-    font-size: 26px;
-    margin-bottom: 4px;
+    font-size: 24px;
+    margin-bottom: 2px;
+    font-style: normal;
     filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
 }
 
-/* Trục nón vàng lõi trung tâm */
+/* KHÓA CHẶT nút bấm tròn vào giữa tâm vòng quay */
 .center-hub {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle, #fff3b0 0%, #ca8a04 60%, #854d0e 100%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68px;
+    height: 68px;
+    background: radial-gradient(circle, #ffffff 0%, #f5b041 55%, #854d0e 100%);
     border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.6);
-    z-index: 10;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.7);
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border: 3px solid #fef08a;
+    border: 3px solid #ffe066;
+    transition: transform 0.2s;
 }
+
+.center-hub:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
 .spin-text {
     font-size: 11px;
     font-weight: 900;
-    color: #1e1b4b;
+    color: #0c051c;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     text-align: center;
     line-height: 1.1;
 }
 
-/* Thanh Progress tiến trình nạp năng lượng */
+/* Thanh nạp năng lượng dạng lỏng (Liquid Progress Bar) */
 .bar {
     width: 100%;
     height: 14px;
-    background: #0f0b21;
-    margin: 30px 0 10px 0;
+    background: #090514;
+    margin: 25px 0 5px 0;
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid rgba(0, 242, 254, 0.3);
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.6);
+    position: relative;
+    box-sizing: border-box;
 }
+
 .bar-inner {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, #00f2fe, #4facfe);
+    background: linear-gradient(90deg, #00f2fe, #4facfe, #00f2fe);
     box-shadow: 0 0 15px #00f2fe;
     border-radius: 20px;
-    transition: width 0.03s linear;
+    position: relative;
+    overflow: hidden;
 }
 
-/* GIAO DIỆN HỘP THOẠI POPUP SANG TRỌNG */
+.bar-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    animation: liquidScan 1.2s infinite linear;
+}
+
+@keyframes liquidScan {
+    0% { left: -100%; }
+    100% { left: 150%; }
+}
+
+/* GIAO DIỆN HỘP THOẠI POPUP TRÚNG THƯỞNG (DYNAMICS BOUNCE) */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(6, 3, 15, 0.9);
+    background: rgba(6, 3, 15, 0.93);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     display: flex;
@@ -227,98 +272,128 @@ body {
     z-index: 99999;
     transition: opacity 0.4s ease;
 }
+
 .modal-overlay.show {
     opacity: 1;
     pointer-events: auto;
 }
+
 .modal-content {
     background: radial-gradient(circle at top, #2e1065, #0c051c);
     border: 2px solid #f5b041;
     padding: 40px 30px;
     border-radius: 28px;
     width: 90%;
-    max-width: 380px;
+    max-width: 370px;
     text-align: center;
     box-shadow: 0 0 50px rgba(245, 176, 65, 0.4), inset 0 0 30px rgba(0,0,0,0.8);
     position: relative;
     overflow: hidden;
-    transform: scale(0.5) translateY(40px);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: scale(0.4) translateY(60px);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1.25); /* Hiệu ứng nảy đàn hồi cực cuốn */
 }
+
 .modal-overlay.show .modal-content {
     transform: scale(1) translateY(0);
 }
+
+/* Quét tia sáng xéo qua bảng thông báo */
 .modal-shine {
     position: absolute;
     top: 0; left: -150%;
     width: 120%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     transform: skewX(-30deg);
     animation: shineSweep 3s infinite ease-in-out;
 }
+
 @keyframes shineSweep {
     0% { left: -150%; }
     40% { left: 150%; }
     100% { left: 150%; }
 }
+
 .modal-icon {
-    font-size: 70px;
-    margin-bottom: 15px;
-    animation: float 2s ease-in-out infinite alternate;
+    font-size: 65px;
+    margin-bottom: 12px;
+    animation: floatIcon 2s ease-in-out infinite alternate;
 }
-@keyframes float {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-10px); }
+
+@keyframes floatIcon {
+    0% { transform: translateY(0) scale(1) rotate(-3deg); }
+    100% { transform: translateY(-10px) scale(1.05) rotate(3deg); filter: drop-shadow(0 10px 20px rgba(245,176,65,0.4)); }
 }
+
 .popup-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 26px;
+    font-size: 25px;
     font-weight: 900;
     margin: 0 0 15px 0;
     color: #fff;
     text-transform: uppercase;
-    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
+
 .modal-text {
-    font-size: 18px;
+    font-size: 17px;
     color: #cbd5e1;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    line-height: 1.5;
 }
+
 .gold-text {
     color: #f5b041;
     font-weight: 900;
     font-size: 28px;
     display: block;
-    margin-top: 5px;
-    text-shadow: 0 0 15px rgba(245, 176, 65, 0.6);
+    margin-top: 6px;
+    text-shadow: 0 0 15px rgba(245, 176, 65, 0.7);
+    animation: textGlow 1.2s ease-in-out infinite alternate;
 }
+
+@keyframes textGlow {
+    0% { transform: scale(0.97); }
+    100% { transform: scale(1.04); text-shadow: 0 0 25px rgba(245, 176, 65, 1); }
+}
+
+/* NÚT THÔI MIÊN "ĐI THÔI" CO GIÃN LIÊN TỤC */
 .modal-cta-btn {
-    padding: 16px 0;
+    padding: 15px 0;
     width: 100%;
     background: linear-gradient(135deg, #ffe066, #f5b041);
     color: #0c051c;
     font-family: 'Orbitron', sans-serif;
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 900;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(245, 176, 65, 0.4);
+    box-shadow: 0 8px 25px rgba(245, 176, 65, 0.4);
     border: none;
     transition: all 0.2s ease;
-}
-.modal-cta-btn:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 25px rgba(245, 176, 65, 0.6);
+    animation: buttonPulse 1.3s infinite;
 }
 
-/* Hiệu ứng pháo hoa giấy rơi tự do khi trúng thưởng */
+.modal-cta-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px rgba(245, 176, 65, 0.7);
+}
+
+@keyframes buttonPulse {
+    0% { box-shadow: 0 6px 20px rgba(245, 176, 65, 0.4); transform: scale(1); }
+    50% { box-shadow: 0 10px 35px rgba(245, 176, 65, 0.7); transform: scale(1.03); }
+    100% { box-shadow: 0 6px 20px rgba(245, 176, 65, 0.4); transform: scale(1); }
+}
+
+/* HIỆU ỨNG PHÁO HOA GIẤY BÙNG NỔ */
 .confetti {
     position: fixed;
     z-index: 100000;
     pointer-events: none;
-    animation: burst 2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    animation: explodeBurst 2s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
 }
-@keyframes burst {
+
+@keyframes explodeBurst {
     0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
     100% { transform: translate(var(--x), var(--y)) scale(0) rotate(var(--r)); opacity: 0; }
 }
@@ -330,23 +405,20 @@ body {
 <div class="glass-container">
     <h2 class="neon-title">🎯 QUAY NGAY ĐỂ NHẬN QUÀ BÍ ẨN</h2>
 
-    <!-- Hệ thống vòng quay nâng cấp chuẩn hình ảnh mẫu -->
     <div class="wheel-outer-ring">
         <div class="needle"></div>
         
         <div id="spin" class="spin-box">
-            <!-- Thêm các vật phẩm Crypto thời thượng khớp hoàn toàn với thiết kế image_1f5f7d.png -->
             <div class="tg-item" style="transform: rotate(22.5deg);"><i>₿</i>BTC</div>
             <div class="tg-item" style="transform: rotate(67.5deg);"><i>Ξ</i>ETH</div>
             <div class="tg-item" style="transform: rotate(112.5deg);"><i>₮</i>USDT</div>
             <div class="tg-item" style="transform: rotate(157.5deg);"><i>🖼️</i>NFT</div>
             <div class="tg-item" style="transform: rotate(202.5deg);"><i>🎁</i>BONUS</div>
-            <div class="tg-item" style="transform: rotate(247.5deg);"><i>₿</i>BTC</div>
+            <div class="tg-item" style="transform: rotate(247.5deg);"><i>🔥</i>MEGA</div>
             <div class="tg-item" style="transform: rotate(292.5deg);"><i>💎</i>JACKPOT</div>
-            <div class="tg-item" style="transform: rotate(337.5deg);"><i>🔥</i>MEGA</div>
+            <div class="tg-item" style="transform: rotate(337.5deg);"><i>👑</i>VIP</div>
         </div>
 
-        <!-- Tâm vàng đóng vai trò làm nút bấm điều khiển -->
         <div class="center-hub" onclick="startSpin()">
             <div class="spin-text">QUAY<br>NGAY</div>
         </div>
@@ -357,7 +429,6 @@ body {
     </div>
 </div>
 
-<!-- POPUP THÔNG BÁO CHIẾN THẮNG -->
 <div id="popupModal" class="modal-overlay">
     <div class="modal-content">
         <div class="modal-shine"></div>
@@ -373,7 +444,7 @@ var targetURL = "https://byvn.net/9qpb";
 var spinning = false;
 
 function startSpin(){
-    if(spinning) return; // Chống click liên tục phá hiệu ứng
+    if(spinning) return; 
     spinning = true;
 
     ttq.track('SpinStart');
@@ -381,12 +452,12 @@ function startSpin(){
     let spin = document.getElementById("spin");
     let bar = document.getElementById("bar");
     
-    // Xoay tối thiểu 6 vòng để tạo gia tốc mãn nhãn
+    // Gia tốc quay tối thiểu 6 vòng siêu mượt
     let randomDeg = 2160 + Math.floor(Math.random() * 360);
     spin.style.transform = `rotate(${randomDeg}deg)`;
 
     let progress = 0;
-    let duration = 4500; // Khớp thời gian với hiệu ứng xoay mượt mà
+    let duration = 4500; 
     let intervalTime = 30; 
     let step = (100 / (duration / intervalTime));
 
@@ -410,9 +481,7 @@ function showResult(){
     modalText.innerHTML = `Hệ thống ghi nhận bạn đã trúng ngẫu nhiên <span class="gold-text">${coins} XU THƯỞNG</span>`;
     
     modal.classList.add("show");
-
     ttq.track('SpinResult', {coins: coins});
-
     launchConfetti();
 }
 
