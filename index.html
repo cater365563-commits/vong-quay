@@ -1,546 +1,470 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vòng Quay Đột Biến - Diệt Zombie Giật Jackpot</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sự Kiện Ưu Đãi Sức Khỏe</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --success-color: #22c55e;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-sub: #64748b;
+        }
 
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;
-  var ttq=w[t]=w[t]||[];
-  ttq.methods=["page","track"];
-  ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat([].slice.call(arguments)))}}; 
-  for(var i=0;i<ttq.methods.length;i++){ttq.setAndDefer(ttq,ttq.methods[i]);}
-  ttq.load=function(e){
-    var s=document.createElement("script");
-    s.async=true;
-    s.src="https://analytics.tiktok.com/i18n/pixel/events.js?sdkid="+e;
-    document.head.appendChild(s);
-  };
-  ttq.load('D8KFUDJC77UA5Q9SJU90');
-  ttq.page();
-}(window, document, 'ttq');
-</script>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-<style>
-/* ===================================================
-   GIAO DIỆN PREMIUM TOXIC CYBER-PLANT (ALL-IN-ONE)
-   =================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&display=swap');
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-body {
-    margin: 0;
-    font-family: 'Rajdhani', sans-serif;
-    background: linear-gradient(-45deg, #09021a, #0c1f13, #1c0a35, #040914);
-    background-size: 400% 400%;
-    animation: gradientBG 12s ease infinite;
-    color: #fff;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow-x: hidden;
-    padding: 20px;
-    box-sizing: border-box;
-}
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 30px 24px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f1f5f9;
+        }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+        /* Ẩn các bước mặc định */
+        .step {
+            display: none;
+        }
 
-/* Khung kính cường lực viền Neon Độc Dược */
-.glass-container {
-    background: rgba(10, 5, 25, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 2px solid rgba(34, 197, 94, 0.35);
-    padding: 35px 25px;
-    border-radius: 32px;
-    box-shadow: 0 0 40px rgba(34, 197, 94, 0.25), inset 0 0 25px rgba(147, 51, 234, 0.2);
-    max-width: 430px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-}
+        .step.active {
+            display: block;
+        }
 
-/* HIỆU ỨNG CHỮ ĐỘNG MÃN NHÃN: ĐỔI MÀU GRADIENT VÀ BAY PHẢO NHẸ */
-.cyber-announcement {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 14px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    /* Dải màu chạy liên tục tạo hiệu ứng lấp lánh */
-    background: linear-gradient(90deg, #4ade80, #22c55e, #a855f7, #f5b041, #4ade80);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: textShine 3s linear infinite, floatingText 2s ease-in-out infinite alternate;
-    margin-top: 0;
-    margin-bottom: 6px;
-}
+        /* Tiêu đề & Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #eff6ff;
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-@keyframes textShine {
-    to { background-position: 200% center; }
-}
+        h2 {
+            color: var(--text-main);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
 
-@keyframes floatingText {
-    0% { transform: translateY(0); filter: drop-shadow(0 0 4px rgba(34, 197, 94, 0.4)); }
-    100% { transform: translateY(-5px); filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)); }
-}
+        .description {
+            color: var(--text-sub);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
 
-/* Tiêu đề Neon phát sáng rực rỡ */
-.neon-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: #fff;
-    text-shadow: 0 0 10px rgba(34, 197, 94, 0.6), 0 0 25px rgba(34, 197, 94, 0.9);
-    animation: neonPulse 2s ease-in-out infinite alternate;
-    margin-top: 0;
-    margin-bottom: 25px;
-}
+        /* Step LOADING: Progress & Kiểm tra */
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-@keyframes neonPulse {
-    0% { text-shadow: 0 0 8px rgba(34, 197, 94, 0.5), 0 0 20px rgba(34, 197, 94, 0.8); transform: scale(0.99); }
-    100% { text-shadow: 0 0 15px rgba(34, 197, 94, 0.9), 0 0 30px rgba(168, 85, 247, 0.9); transform: scale(1.01); }
-}
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background-color: #f1f5f9;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
 
-/* Vành đai mạ vàng hoàng gia tích hợp hệ thống đèn LED */
-.wheel-outer-ring {
-    position: relative;
-    width: 320px;
-    height: 320px;
-    margin: 15px auto;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #ffe066, #f5b041, #fcf6ba, #b38728, #fbf5b7, #9a7d0a);
-    box-shadow: 0 0 35px rgba(245, 176, 65, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-}
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width 0.1s linear;
+        }
 
-.wheel-outer-ring::before {
-    content: '';
-    position: absolute;
-    top: 6px; left: 6px; right: 6px; bottom: 6px;
-    border-radius: 50%;
-    border: 5px dotted #ffffff;
-    box-shadow: 0 0 12px #ffffff;
-    animation: ledBlink 0.6s infinite alternate;
-    pointer-events: none;
-    z-index: 5;
-}
+        .check-item {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
 
-@keyframes ledBlink {
-    0% { filter: drop-shadow(0 0 2px #fff) brightness(1); opacity: 0.5; }
-    100% { filter: drop-shadow(0 0 10px #22c55e) brightness(1.8); opacity: 1; }
-}
+        .check-info h4 {
+            font-size: 15px;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
 
-/* Mũi Tên Vàng đặt chuẩn xác tại đỉnh 12h */
-.needle {
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 26px;
-    height: 36px;
-    background: linear-gradient(to bottom, #ffffff, #f5b041, #b38728);
-    clip-path: polygon(50% 100%, 0 0, 100% 0);
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6));
-    z-index: 110;
-}
+        .check-info p {
+            font-size: 13px;
+            color: var(--text-sub);
+        }
 
-/* Đĩa xoay 8 phân vùng màu Tím và Xanh Độc Dược đan xen sắc nét */
-.spin-box {
-    width: 288px;
-    height: 288px;
-    border-radius: 50%;
-    background: conic-gradient(
-        #6b21a8 0deg 45deg, 
-        #14532d 45deg 90deg, 
-        #6b21a8 90deg 135deg, 
-        #14532d 135deg 180deg, 
-        #6b21a8 180deg 225deg, 
-        #14532d 225deg 270deg, 
-        #6b21a8 270deg 315deg, 
-        #14532d 315deg 360deg
-    );
-    box-shadow: inset 0 0 35px rgba(0,0,0,0.9);
-    position: relative;
-    overflow: hidden;
-    transition: transform 4.5s cubic-bezier(0.15, 0.88, 0.3, 1);
-    z-index: 10;
-}
+        .check-status {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-sub);
+            white-space: nowrap;
+        }
 
-.tg-item {
-    position: absolute;
-    width: 80px;
-    height: 144px;
-    top: 0;
-    left: calc(50% - 40px);
-    transform-origin: bottom center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 18px;
-    box-sizing: border-box;
-    font-size: 13px;
-    font-weight: 700;
-    color: #ffffff;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.9);
-}
+        .check-status.running { color: var(--primary-color); }
+        .check-status.done { color: var(--success-color); }
 
-.tg-item i {
-    font-size: 26px;
-    margin-bottom: 4px;
-    font-style: normal;
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7));
-}
+        .footer-note {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-sub);
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 24px;
+        }
 
-/* NÚT BẤM TRUNG TÂM */
-.center-hub {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70px;
-    height: 70px;
-    background: radial-gradient(circle, #ffffff 0%, #22c55e 55%, #14532d 100%);
-    border-radius: 50%;
-    box-shadow: 0 6px 22px rgba(0,0,0,0.8), inset 0 2px 4px rgba(255,255,255,0.7);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: 3px solid #4ade80;
-    transition: transform 0.2s;
-}
+        /* Step ƯU ĐÃI: Danh sách ưu đãi */
+        .list-title-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
 
-.center-hub:hover {
-    transform: translate(-50%, -50%) scale(1.05);
-}
+        .list-title {
+            font-weight: 700;
+            color: var(--text-main);
+        }
 
-.spin-text {
-    font-size: 11px;
-    font-weight: 900;
-    color: #040914;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    text-align: center;
-    line-height: 1.1;
-}
+        .btn-update {
+            background: #f1f5f9;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
 
-/* THANH NẠP NĂNG LƯỢNG ĐỘC DƯỢC */
-.bar {
-    width: 100%;
-    height: 14px;
-    background: #050b14;
-    margin: 25px 0 5px 0;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid rgba(34, 197, 94, 0.4);
-    box-shadow: inset 0 2px 6px rgba(0,0,0,0.7);
-    position: relative;
-    box-sizing: border-box;
-}
+        .gift-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
 
-.bar-inner {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #22c55e, #4ade80, #10b981);
-    box-shadow: 0 0 15px #22c55e;
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-}
+        .gift-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-weight: 600;
+            color: var(--text-main);
+        }
 
-.bar-inner::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 50%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-    animation: liquidScan 1.2s infinite linear;
-}
+        .gift-item::before {
+            content: "●";
+            color: var(--primary-color);
+            font-size: 16px;
+        }
 
-@keyframes liquidScan {
-    0% { left: -100%; }
-    100% { left: 150%; }
-}
+        /* Cảnh báo hệ thống */
+        .warning-box {
+            background-color: #fffbeb;
+            border: 1px solid #fef3c7;
+            padding: 14px;
+            border-radius: 14px;
+            display: flex;
+            gap: 10px;
+            font-size: 13px;
+            color: #b45309;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
 
-/* POPUP MODAL HOÀNG GIA */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(4, 2, 10, 0.94);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 99999;
-    transition: opacity 0.4s ease;
-}
+        /* Checkbox & Button */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: var(--text-main);
+            cursor: pointer;
+        }
 
-.modal-overlay.show {
-    opacity: 1;
-    pointer-events: auto;
-}
+        .checkbox-container input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
 
-.modal-content {
-    background: radial-gradient(circle at top, #2e1065, #080314);
-    border: 2px solid #f5b041;
-    padding: 40px 30px;
-    border-radius: 28px;
-    width: 90%;
-    max-width: 370px;
-    text-align: center;
-    box-shadow: 0 0 50px rgba(245, 176, 65, 0.4), inset 0 0 30px rgba(0,0,0,0.8);
-    position: relative;
-    overflow: hidden;
-    transform: scale(0.4) translateY(60px);
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1.25);
-}
+        .btn-submit {
+            width: 100%;
+            background-color: #cbd5e1;
+            color: #ffffff;
+            border: none;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: not-allowed;
+            transition: all 0.2s;
+        }
 
-.modal-overlay.show .modal-content {
-    transform: scale(1) translateY(0);
-}
+        .btn-submit.active {
+            background-color: var(--primary-color);
+            cursor: pointer;
+        }
 
-.modal-shine {
-    position: absolute;
-    top: 0; left: -150%;
-    width: 120%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transform: skewX(-30deg);
-    animation: shineSweep 3s infinite ease-in-out;
-}
+        /* Step THÀNH CÔNG: Kết nối an toàn */
+        .success-view {
+            text-align: center;
+            padding: 40px 0;
+        }
 
-@keyframes shineSweep {
-    0% { left: -150%; }
-    40% { left: 150%; }
-    100% { left: 150%; }
-}
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background-color: var(--success-color);
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 48px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(34, 197, 94, 0.2);
+        }
 
-.modal-icon {
-    font-size: 65px;
-    margin-bottom: 12px;
-    animation: floatIcon 2s ease-in-out infinite alternate;
-}
-
-@keyframes floatIcon {
-    0% { transform: translateY(0) scale(1) rotate(-3deg); }
-    100% { transform: translateY(-10px) scale(1.05) rotate(3deg); filter: drop-shadow(0 10px 20px rgba(245,176,65,0.4)); }
-}
-
-.popup-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 25px;
-    font-weight: 900;
-    margin: 0 0 15px 0;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(255,255,255,0.2);
-}
-
-.modal-text {
-    font-size: 17px;
-    color: #cbd5e1;
-    margin-bottom: 25px;
-    line-height: 1.5;
-}
-
-.gold-text {
-    color: #f5b041;
-    font-weight: 900;
-    font-size: 28px;
-    display: block;
-    margin-top: 6px;
-    text-shadow: 0 0 15px rgba(245, 176, 65, 0.7);
-    animation: textGlow 1.2s ease-in-out infinite alternate;
-}
-
-@keyframes textGlow {
-    0% { transform: scale(0.97); }
-    100% { transform: scale(1.04); text-shadow: 0 0 25px rgba(245, 176, 65, 1); }
-}
-
-.modal-cta-btn {
-    padding: 15px 0;
-    width: 100%;
-    background: linear-gradient(135deg, #ffe066, #f5b041);
-    color: #0c051c;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 19px;
-    font-weight: 900;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 8px 25px rgba(245, 176, 65, 0.4);
-    border: none;
-    transition: all 0.2s ease;
-    animation: buttonPulse 1.3s infinite;
-}
-
-.modal-cta-btn:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 30px rgba(245, 176, 65, 0.7);
-}
-
-@keyframes buttonPulse {
-    0% { box-shadow: 0 6px 20px rgba(245, 176, 65, 0.4); transform: scale(1); }
-    50% { box-shadow: 0 10px 35px rgba(245, 176, 65, 0.7); transform: scale(1.03); }
-    100% { box-shadow: 0 6px 20px rgba(245, 176, 65, 0.4); transform: scale(1); }
-}
-
-.confetti {
-    position: fixed;
-    z-index: 100000;
-    pointer-events: none;
-    animation: explodeBurst 2s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
-}
-
-@keyframes explodeBurst {
-    0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-    100% { transform: translate(var(--x), var(--y)) scale(0) rotate(var(--r)); opacity: 0; }
-}
-</style>
+        .success-view h2 {
+            font-size: 26px;
+            margin-bottom: 12px;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="glass-container">
-    <div class="cyber-announcement">⚡ THU HOẠCH ĐIỂM THƯỞNG CỦA BẠN TẠI ĐÂY ⚡</div>
+<div class="container">
     
-    <h2 class="neon-title">🎯 THẢ GAI DIỆT ZOMBIE - GIẬT JACKPOT KHỦNG</h2>
+    <!-- BƯỚC 1: XÁC MINH TRUY CẬP (Chạy tự động ngay khi vào trang - Giống photo_1_2026-06-27_12-32-28.jpg) -->
+    <div id="step1" class="step active">
+        <div class="progress-header">
+            <div class="badge" id="statusBadge">🔄 Đang xác minh</div>
+            <span id="percentText" style="font-weight: 700; color: var(--primary-color);">0%</span>
+        </div>
+        <h2>Xác minh truy cập</h2>
+        <p class="description">Hệ thống đang tự động kiểm tra thiết bị, IP và điều kiện an toàn để áp dụng ưu đãi.</p>
 
-    <div class="wheel-outer-ring">
-        <div class="needle"></div>
+        <div class="progress-bar-container">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <div class="check-item">
+            <div class="check-info">
+                <h4>Kiểm tra thiết bị</h4>
+                <p>Xác nhận trình duyệt và cấu hình hợp lệ</p>
+            </div>
+            <div id="status1" class="check-status running">Đang kiểm tra</div>
+        </div>
+
+        <div class="check-item">
+            <div class="check-info">
+                <h4>Xác minh IP</h4>
+                <p>Đảm bảo kết nối ổn định, không giả mạo</p>
+            </div>
+            <div id="status2" class="check-status">Chờ</div>
+        </div>
+
+        <div class="check-item">
+            <div class="check-info">
+                <h4>Đối chiếu điều kiện ưu đãi</h4>
+                <p>Xác nhận đủ điều kiện nhận khuyến mại</p>
+            </div>
+            <div id="status3" class="check-status">Chờ</div>
+        </div>
+
+        <div class="footer-note">Vui lòng không tắt trang trong quá trình xác minh dữ liệu.</div>
+    </div>
+
+    <!-- BƯỚC 2: HIỂN THỊ ƯU ĐÃI & ĐỒNG Ý (Hiện ra sau khi tải xong - Giống photo_2_2026-06-27_12-32-28.jpg) -->
+    <div id="step2" class="step">
+        <div class="badge" style="background-color: #fef3c7; color: #d97706;">🎁 Khuyến mại đặc biệt</div>
+        <h2>Ưu đãi dành riêng cho người mới</h2>
+        <p class="description">Xác nhận điều kiện để tiếp tục nhận khuyến mại. Hệ thống xử lý tự động - nhanh chóng - bảo mật.</p>
         
-        <div id="spin" class="spin-box">
-            <div class="tg-item" style="transform: rotate(22.5deg);"><i>🍈</i>MUTANT</div>
-            <div class="tg-item" style="transform: rotate(67.5deg);"><i>🧟</i>CRUSH</div>
-            <div class="tg-item" style="transform: rotate(112.5deg);"><i>₿</i>BTC</div>
-            <div class="tg-item" style="transform: rotate(157.5deg);"><i>💎</i>JACKPOT</div>
-            <div class="tg-item" style="transform: rotate(202.5deg);"><i>🎁</i>BONUS</div>
-            <div class="tg-item" style="transform: rotate(247.5deg);"><i>🔥</i>MEGA</div>
-            <div class="tg-item" style="transform: rotate(292.5deg);"><i>🧪</i>TOXIC</div>
-            <div class="tg-item" style="transform: rotate(337.5deg);"><i>👑</i>VIP</div>
+        <div class="list-title-box">
+            <span class="list-title">Danh sách ưu đãi đặc biệt</span>
+            <button class="btn-update">Tự động cập nhật</button>
         </div>
 
-        <div class="center-hub" onclick="startSpin()">
-            <div class="spin-text">QUAY<br>NGAY</div>
+        <ul class="gift-list">
+            <li class="gift-item">ĐĂNG KÝ +68 FREE</li>
+            <li class="gift-item">NẠP ĐẦU HƯỞNG 100%</li>
+            <li class="gift-item">GỬI LẦN ĐẦU 50 NHẬN 168</li>
+            <li class="gift-item">GIỚI THIỆU BẠN +200 </li>
+        </ul>
+
+        <div class="warning-box">
+            <span>⚠️</span>
+            <span>Ưu đãi áp dụng giới hạn trong ngày. Vui lòng xác nhận để giữ ưu đãi.</span>
+        </div>
+
+        <label class="checkbox-container">
+            <input type="checkbox" id="agreeCheckbox">
+            <span>Tôi đã đọc và đồng ý với chương trình khuyến mãi</span>
+        </label>
+
+        <button id="btnNext" class="btn-submit" disabled>ĐỒNG Ý & TIẾP TỤC</button>
+    </div>
+
+    <!-- BƯỚC 3: KẾT NỐI AN TOÀN (Giống photo_3_2026-06-27_12-32-29.jpg) -->
+    <div id="step3" class="step">
+        <div class="success-view">
+            <div class="success-icon">✓</div>
+            <h2>Kết Nối An Toàn</h2>
+            <p class="description" style="font-size: 16px;">Xác thực thành công. Đang kiểm tra khuyến mãi cho bạn...</p>
         </div>
     </div>
 
-    <div class="bar">
-        <div id="bar" class="bar-inner"></div>
-    </div>
-</div>
-
-<div id="popupModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-shine"></div>
-        <div class="modal-icon">🎰</div>
-        <h3 class="popup-title">Chúc Mừng Bạn!</h3>
-        <p id="modal-text" class="modal-text"></p>
-        <div class="modal-cta-btn" onclick="goLink()">👉 VÀO GAME</div>
-    </div>
 </div>
 
 <script>
-var targetURL = "https://play.google.com/store/apps/details?id=com.ea.game.pvzfree_row&hl=vi";
-var spinning = false;
+// 
+const TARGET_URL = "https://byvn.net/D7IU"; 
 
-function startSpin(){
-    if(spinning) return; 
-    spinning = true;
+const step1 = document.getElementById('step1');
+const step2 = document.getElementById('step2');
+const step3 = document.getElementById('step3');
+const checkbox = document.getElementById('agreeCheckbox');
+const btnNext = document.getElementById('btnNext');
 
-    ttq.track('SpinStart');
+//
+window.addEventListener('DOMContentLoaded', () => {
+    startVerification();
+});
 
-    let spin = document.getElementById("spin");
-    let bar = document.getElementById("bar");
+//
+function checkInAppBrowser() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
     
-    let randomDeg = 2160 + Math.floor(Math.random() * 360);
-    spin.style.transform = `rotate(${randomDeg}deg)`;
+    //
+    const isTikTok = ua.indexOf('TikTok') > -1;
+    
+    //
+    const isFacebook = (ua.indexOf('FBAN') > -1) || (ua.indexOf('FBAV') > -1);
+    
+    //
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(ua);
+    
+    //
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-    let progress = 0;
-    let duration = 4500; 
-    let intervalTime = 30; 
-    let step = (100 / (duration / intervalTime));
+    //
+    return (isTikTok || isFacebook) && isMobile && isTouchDevice;
+}
 
-    let interval = setInterval(() => {
-        progress += step;
-        if(progress >= 100) progress = 100;
-        bar.style.width = progress + "%";
+function startVerification() {
+    const progressBar = document.getElementById('progressBar');
+    const percentText = document.getElementById('percentText');
+    const status1 = document.getElementById('status1');
+    const status2 = document.getElementById('status2');
+    const status3 = document.getElementById('status3');
+    
+    let percent = 0;
+    
+    const interval = setInterval(() => {
+        percent += 1;
+        if (percent > 100) percent = 100;
+        
+        progressBar.style.width = percent + '%';
+        percentText.innerText = percent + '%';
 
-        if(progress >= 100){
+        //
+        if (percent >= 35 && percent < 70) {
+            status1.innerText = "Hoàn thành";
+            status1.className = "check-status done";
+            status2.innerText = "Đang kiểm tra";
+            status2.className = "check-status running";
+        } 
+        else if (percent >= 70 && percent < 100) {
+            status2.innerText = "Hoàn thành";
+            status2.className = "check-status done";
+            status3.innerText = "Đang kiểm tra";
+            status3.className = "check-status running";
+        } 
+        else if (percent === 100) {
             clearInterval(interval);
-            setTimeout(showResult, 500);
+            
+            //
+            const isValidDevice = checkInAppBrowser();
+
+            setTimeout(() => {
+                if (isValidDevice) {
+                    //
+                    status3.innerText = "Hoàn thành";
+                    status3.className = "check-status done";
+                    
+                    setTimeout(() => {
+                        step1.classList.remove('active');
+                        step2.classList.add('active');
+                    }, 500);
+                } else {
+                    //
+                    status3.innerText = "Thất bại";
+                    status3.style.color = "#ef4444"; 
+                    
+                    //
+                    document.querySelector('#step1 .description').innerHTML = 
+                        "<b style='color:#ef4444;'>LỖI TRUY CẬP:</b> Chương trình ưu đãi này chỉ áp dụng cho khách hàng phù hợp.";
+                    
+                    document.querySelector('.footer-note').innerText = "Hệ thống đã chặn thiết bị không hợp lệ để tránh lạm dụng khuyến mãi.";
+                }
+            }, 600);
         }
-    }, intervalTime);
+    }, 35); 
 }
 
-function showResult(){
-    let modal = document.getElementById("popupModal");
-    let modalText = document.getElementById("modal-text");
-
-    let coins = Math.floor(Math.random() * 400 + 100);
-    modalText.innerHTML = `Quả cầu gai đã nghiền nát Zombie! Hệ thống ghi nhận bạn nhận được <span class="gold-text">${coins} ĐIỂM ĐỘT BIẾN</span>`;
-    
-    modal.classList.add("show");
-    
-    ttq.track('SpinResult', {coins: coins});
-    launchConfetti();
-}
-
-function launchConfetti(){
-    for(let i = 0; i < 140; i++){ 
-        let c = document.createElement("div");
-        c.className = "confetti";
-        
-        c.style.left = "50%";
-        c.style.top = "50%";
-        
-        let size = Math.random() * 12 + 6;
-        c.style.width = size + "px";
-        c.style.height = size + "px";
-        
-        c.style.borderRadius = Math.random() > 0.3 ? "50%" : "2px";
-        c.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
-        
-        let angle = Math.random() * Math.PI * 2;
-        let velocity = Math.random() * 500 + 250; 
-        let xMove = Math.cos(angle) * velocity;
-        let yMove = Math.sin(angle) * velocity + 150; 
-        let rotation = Math.random() * 1440 - 720;
-
-        c.style.setProperty('--x', `${xMove}px`);
-        c.style.setProperty('--y', `${yMove}px`);
-        c.style.setProperty('--r', `${rotation}deg`);
-        
-        document.body.appendChild(c);
-        setTimeout(() => c.remove(), 2000);
+// Lắng nghe sự kiện Checkbox
+checkbox.addEventListener('change', function() {
+    if(this.checked) {
+        btnNext.disabled = false;
+        btnNext.classList.add('active');
+    } else {
+        btnNext.disabled = true;
+        btnNext.classList.remove('active');
     }
-}
+});
 
-function goLink(){
-    ttq.track('ClickButton');
-    window.location.href = targetURL;
-}
+// Chuyển hướng khi nhấn nút Tiếp tục
+btnNext.addEventListener('click', function() {
+    step2.classList.remove('active');
+    step3.classList.add('active');
+    setTimeout(() => {
+        window.location.href = TARGET_URL;
+    }, 2000);
+});
 </script>
 
 </body>
